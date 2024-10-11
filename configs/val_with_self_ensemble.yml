@@ -1,0 +1,131 @@
+# Hardware
+seed: 1128
+gpus: (0, )
+port: 29500
+num_threads: 1
+no_multiprocessing: True
+syncbn: False
+cudnn_deterministic: False
+cudnn_benchmark: True
+
+# Dataset
+dataset: ['dep', 'gt', 'rgb']
+grid_spot: True
+num_sample: 1000
+cut_mask: False
+max_depth: 10.0
+rgb_noise: 0.05
+noise: 0.01
+
+fill_type: 'NN_fillv2'
+hflip: True
+colorjitter: True
+rotation: True
+resize: True
+normalize: True
+scale_depth: False
+rgb_dropout: False
+
+val_h: 288
+val_w: 384
+crop_and_pad: True
+crop_orientation: 'xy'
+softspace: 10
+mode: 'mean'
+random_crop_height: 256
+random_crop_width: 256
+train_bottom_crop: False
+train_random_crop: True
+val_bottom_crop: False
+val_random_crop: True
+test_bottom_crop: False
+test_random_crop: False
+
+toy_test: False
+toy_test_number: 300
+
+val_epoch: 19
+val_iters: 500
+
+# Network
+depth_norm: True
+activate: 'relu'
+kernel_size: 3
+filter_size: 15
+dkn_residual: True
+preserve_input: True
+summary_name: 'summary'
+
+loss_weight: 1.0
+output: 'output'
+supervised: 'gt'
+
+# Resume
+resume: False
+load_model_strict: False
+pretrain: ''
+wandb_id_resume: ''
+
+# Test
+test: True
+test_option: 'testv2'
+test_name: 'output'
+tta: True
+test_not_random_crop: False
+wandb_id_test: ''
+
+model: 'model'
+test_dir: ''
+save_test_image: True
+
+# Training
+log_itr: 1
+start_epoch: 0
+epochs: 30
+batch_size: 1
+
+accumulation_gradient: False
+accumulation_steps: 0
+
+# * warm up
+warm_up: False
+no_warm_up: True
+
+# Loss
+loss_fixed: False
+partial_supervised_index: 0.0
+loss_ben: '1.0*L2'
+loss_jin: ''
+loss_an: ''
+
+# Optimizer
+lr: 1e-3
+# * ADAM
+optimizer: 'ADAMW'   # choices=('SGD', 'ADAM', 'RMSprop')
+momentum: 0.9
+betas: (0.9, 0.999)
+epsilon: 1e-8
+weight_decay: 0.05
+
+# Scheduler
+scheduler: 'lambdaLR'
+# * stepLR
+decay: (5, 10, 15, 20, 25, 30)
+gamma: (1.0, 0.5, 0.25, 0.125, 0.0625, 0.03125)
+
+# Summary
+num_summary: 6
+
+# Logs
+vis_step: 1000
+record_by_wandb_online: False
+test_record_by_wandb_online: False
+
+ben_online_loss: True
+ben_online_metric: True
+ben_online_rmse_only: False
+ben_online_img: False
+
+save_result_only: True
+
+
